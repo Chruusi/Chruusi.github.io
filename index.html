@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Gjestebok</title>
+       <h1>Christian's gjesteliste</h1>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="navn" placeholder="Navn"><br>
+            <textarea id="Melding" rows="4" cols="50" placeholder="Beskjed" required></textarea><br>
+            <input type="button" id="Knapp" value="Send inn" onclick="sendInn()">
+            <input submit type="button" onclick = "visDatabase()" value="Se svar">
+        </form>
+        <br>    
+        <div id="gjesteliste"></div>
+    
+    </body>
+    
+    
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBBJvIxZNtOb1YbQo1mC5LxLCOFFTan8-o",
+    authDomain: "besoksbok.firebaseapp.com",
+    databaseURL: "https://besoksbok.firebaseio.com",
+    projectId: "besoksbok",
+    storageBucket: "besoksbok.appspot.com",
+    messagingSenderId: "202245579457",
+    appId: "1:202245579457:web:996a29874b69fd5f9e6a40"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+        
+        let db = firebase.database();
+        
+        let besoksbok = db.ref("besoksbok");
+        
+          function sendInn(){
+           
+           
+           var navn_in = document.getElementById("navn").value
+           var beskjed_in = document.getElementById("Melding").value
+           var today = new Date();
+           var dateTime = today.getFullYear()+"0"+today.getMonth()+1+""+today.getHours()+""+today.getMinutes()+""+today.getSeconds();
+           
+           let new_objekt = besoksbok.child(dateTime);
+           
+           
+           new_objekt.set({
+               navn : navn_in,
+               beskjed : beskjed_in
+           });
+               
+           window.alert("Beskjed lagt til i database");
+          }
+        
+        
+        function visDatabase(){
+            function visDatabase_hjelpefunktion(snapshot){
+                let timestamp = snapshot.key;
+                let navn_og_tekst = snapshot.val();
+                document.getElementById("gjesteliste").innerHTML += `<div>Navn: ${navn_og_tekst.navn} - Tekst: ${navn_og_tekst.beskjed}</div>`;
+            }
+            besoksbok.on("child_added", visDatabase_hjelpefunktion);
+        }
+        
+        
+        
+        
+    </script>
+     
+    
+    <script>
+       let txtNavn = document.getElementById("txtNavn");
+       let txtMld = document.getElementById("txtMld");
+       let Knapp = document.getElementById("Knapp");
+       let Melding1 = document.getElementById("Melding1");
+        let gjesteliste = document.getElementById("gjesteliste");
+        
+       
+     
+           
+           
+           
+       
+        
+    </script>
+
+        
+        
+  
+</html>
