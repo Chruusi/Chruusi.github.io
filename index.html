@@ -2,18 +2,27 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Gjestebok</title>
-       <h1>Christian's gjesteliste</h1>
+        <title>Bokliste</title>
+       <h1>Christian's bokliste</h1>
     </head>
     <body>
         <form>
-            <input type="text" id="navn" placeholder="Navn"><br>
-            <textarea id="Melding" rows="4" cols="50" placeholder="Beskjed" required></textarea><br>
-            <input type="button" id="Knapp" value="Send inn" onclick="sendInn()">
-            <input submit type="button" onclick = "visDatabase()" value="Se svar">
+            Tittel:<input type="text" id="tittel"><br>
+            Utgivelsesår:<input type="text" id="utår" placeholder="dd.mm.yyyy"><br>
+            Navn på forfatter:<input type="text" id="forfatter"><br>
+            Forlag:<input type="text" id="forlag"><br>
+            <label for="bok">Min vurdering av boken:</label><select id="bok">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select><br>
+        <input type="button" id="Knapp" value="Send inn" onclick="sendInn()">
         </form>
         <br>    
-        <div id="gjesteliste"></div>
+        
     
     </body>
     
@@ -28,35 +37,41 @@
     <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBBJvIxZNtOb1YbQo1mC5LxLCOFFTan8-o",
-    authDomain: "besoksbok.firebaseapp.com",
-    databaseURL: "https://besoksbok.firebaseio.com",
-    projectId: "besoksbok",
-    storageBucket: "besoksbok.appspot.com",
-    messagingSenderId: "202245579457",
-    appId: "1:202245579457:web:996a29874b69fd5f9e6a40"
+    apiKey: "AIzaSyCD0wn2GZr6WBE_zBpcTYPYsTg816_amiw",
+    authDomain: "bokliste-1a76c.firebaseapp.com",
+    databaseURL: "https://bokliste-1a76c.firebaseio.com",
+    projectId: "bokliste-1a76c",
+    storageBucket: "bokliste-1a76c.appspot.com",
+    messagingSenderId: "169301155106",
+    appId: "1:169301155106:web:fb49c9290c614c1203197b"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
         
         let db = firebase.database();
         
-        let besoksbok = db.ref("besoksbok");
+        let bokliste = db.ref("bokliste");
         
           function sendInn(){
            
            
-           var navn_in = document.getElementById("navn").value
-           var beskjed_in = document.getElementById("Melding").value
+           var tittel_in = document.getElementById("tittel").value
+           var utår_in = document.getElementById("utår").value
+           var forfatter_in = document.getElementById("forfatter").value
+           var forlag_in = document.getElementById("forlag").value 
+           var vurdering_in = document.getElementById("bok").value 
            var today = new Date();
            var dateTime = today.getFullYear()+"0"+today.getMonth()+1+""+today.getHours()+""+today.getMinutes()+""+today.getSeconds();
            
-           let new_objekt = besoksbok.child(dateTime);
+           let new_objekt = bokliste.child(dateTime);
            
            
            new_objekt.set({
-               navn : navn_in,
-               beskjed : beskjed_in
+               tittel : tittel_in,
+               utgivelsesår : utår_in,
+               forfatter : forfatter_in,
+               forlag : forlag_in,
+               vurdering : vurdering_in
            });
                
            window.alert("Beskjed lagt til i database");
@@ -67,7 +82,7 @@
             function visDatabase_hjelpefunktion(snapshot){
                 let timestamp = snapshot.key;
                 let navn_og_tekst = snapshot.val();
-                document.getElementById("gjesteliste").innerHTML += `<div>Navn: ${navn_og_tekst.navn} - Tekst: ${navn_og_tekst.beskjed}</div>`;
+                document.getElementById("bokliste").innerHTML += `<div>Navn: ${navn_og_tekst.navn} - Tekst: ${navn_og_tekst.beskjed}</div>`;
             }
             besoksbok.on("child_added", visDatabase_hjelpefunktion);
         }
