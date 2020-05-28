@@ -1,0 +1,286 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: red;
+    margin:0;
+    overflow-x: hidden;
+    height: auto;
+}
+h1{
+    margin:0;
+    padding: 20px 40px;
+    color:white;
+    font-family: monospace;
+    font-size: 55px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+header{
+    background-color: #990001;
+    z-index: 2;
+    
+}
+nav{
+    background-color: #b30000;
+    max-height: 50px;
+    width:100%;
+    margin: 0;
+    font-size: 0;
+    font-family: monospace;
+    position:sticky;
+    top:0;  
+    z-index: 100;
+}
+nav *{
+    max-height: 50px
+}
+
+nav a, .dropdown-ting a{
+    text-decoration: none;
+    padding:0 20px;
+    font-size: 25px;
+    color: white;
+    line-height: 50px;
+    display: inline-block;
+    text-shadow: 0 0 1px;
+    margin: none;
+    max-height: 50px;
+    background-color: #b30000;
+}
+
+nav a:hover{
+    background-color: #990000;   
+    transition: 0.5s;
+    transform: 
+}
+.dropdown{
+    display: inline-block;
+    position: relative;
+    height: 200px;
+    background-color: black;
+}
+.dropdown-ting{
+    display:none ;
+    position: absolute;
+    width: 200px;
+    background-color:#b30000;
+    padding:0;
+    height: 200px;
+    background-color: black;
+    z-index: 10;
+}
+.dropdown-ting a{
+    display: block;
+    height: 100%;
+}
+.dropdown:hover .dropdown-ting{
+    display: block;
+}
+
+footer *{
+    font-weight: bolder;
+    color: white;
+    background-color: #b30000;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 0;
+}
+footer {
+    margin-top: auto;
+    display: block;
+    width: 100%;
+    
+}
+.Kop{
+    background-image:url(The%20kop.png);
+    background-size: cover;
+    z-index: -1;
+    
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 60px;
+}
+
+.Bane{
+    display: inline-grid;
+    grid-template-areas: 
+        ". . . . ."
+        "VS . . . HS"
+        ". . S . ."
+        ". VM . HM ."
+        ". . SDM . ."
+        "VB VMS . HMS HB"
+        ". . K . .";
+    margin-left: 100px;
+    margin-top: 50px;
+    position: relative;
+    background-image: url(Bane.svg);
+    background-repeat: no-repeat;
+    height: 1225px;
+    width: 810px;
+    background-size: cover; 
+}
+
+.Bane>div{
+    height: auto;
+    width: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: bottom;
+}
+.Bane>div>div{
+    position: absolute;
+    bottom: -1em;
+    text-align: center;
+    background-color: white;
+    width: 150px;
+}
+
+.VS{
+    grid-area: VS;
+    background-image: url(Spillere/Mane.png);
+    
+}
+
+.HS{
+    grid-area: HS;
+    background-image: url(Spillere/Salah.png);
+}
+.S{
+    grid-area: S;
+    background-image: url(Spillere/Firmino.png);
+    top: -85px;
+}
+.VM{
+    grid-area: VM;
+    background-image: url(Spillere/Gini.png);
+}
+.HM{
+    grid-area: HM;
+    background-image: url(Spillere/Hendo.png);
+}
+.SDM{
+    grid-area: SDM;
+    background-image: url(Spillere/Fab.png);
+}
+.VB{
+    grid-area: VB;
+    background-image: url(Spillere/Robbo.png);
+}
+.HB{
+    grid-area: HB;
+    background-image: url(Spillere/TAA.png);
+}
+.VMS{
+    grid-area: VMS;
+    background-image: url(Spillere/VVD.png);
+}
+.HMS{
+    grid-area: HMS;
+    background-image: url(Spillere/Gomez.png);
+}
+.K{
+    grid-area: K;
+    background-image: url(Spillere/Alisson.png);
+}
+
+.drakt{
+    width: 32vw;
+    display: inline-block;
+    margin-top: 50px;
+    perspective: 100px;
+    animation-delay: 0s;
+    position: relative;
+}
+.drakt img{
+    width: inherit;
+}
+.drakt p{
+    text-align: center;
+    margin: 0 160px 0 120px;
+    transform: rotateY(-2deg);
+    transform-style: preserve-3d;
+    background-color: black;
+    color: aliceblue;
+    font-size: 20px;
+}
+#Hjemme{
+    animation-name: Hjem;
+    animation-duration: 3s;
+}
+#Borte{
+    animation-name: Bort;
+    animation-duration: 7s;
+    z-index: 1;
+    
+}
+#Tredje{
+    animation-name: Tredje;
+    animation-duration: 10s;
+}
+.bildebox{
+    overflow: hidden;
+    height: 40vw;
+}
+@keyframes Hjem{
+    0%{left: -500px; top: 0px;}
+    25%{left: -400px; top: 0px}
+    100%{left: 0px; top: 0px}
+}
+@keyframes Bort{
+     0%{left: 0px; bottom: -1000px;}
+    50%{left: 0px; bottom: -1000px}
+    100%{left: 0px; bottom: 0px}
+}
+@keyframes Tredje{
+     0%{right: -500px; top: 0px;}
+    75%{right: -500px; top: 0px;}
+    100%{right: 0px; top: 0px}
+}
+.anfield{
+    width: 850px;
+    margin-left: 200px;
+    margin-top: 100px;
+}
+#text{
+    margin-left: 5px;
+    margin-top: 20px;
+}
+#melding{
+    width: 167px;
+}
+.pokal{
+    display: inline-block;
+    margin: 20px 40px 0 40px;
+}
+.pokal img{
+    height: 400px;
+}
+.pokal p{
+    text-align: center;
+    background-color: #000000;
+    margin: 0;
+    line-height: 1.5em;
+    color: #ffffff;
+    border-radius: 25px;
+}
+#Prem{
+    margin-left: 60px;
+}
+.info{
+    background-image: linear-gradient(to right,red,white,red);
+    color: red;
+    font-style: oblique;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
